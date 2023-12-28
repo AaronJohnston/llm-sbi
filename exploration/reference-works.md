@@ -31,3 +31,9 @@ This is a list of external works relevant to this project.
 
 - [Harelix](https://huggingface.co/datasets/Harelix/Prompt-Injection-Mixed-Techniques-2024)
   - over 1K rows, no models trained on it currently.
+
+5. Perplexity-Based Detection Papers
+
+- [Detecting Language Model Attacks with Perplexity](https://arxiv.org/abs/2308.14132) Alon et. al. 2023
+- [Demystifying Prompts in Language Models via Perplexity Estimation](https://arxiv.org/abs/2212.04037) (includes Noah Smith and Luke Zettlemoyer from UW NLP!) Alon et. al. 2023
+- [Baseline Defenses for Adversarial Attacks Against Aligned Language Models](https://arxiv.org/abs/2309.00614) Jain et. al. 2023
