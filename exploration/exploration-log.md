@@ -11,3 +11,4 @@
 - I found several useful papers about prompt injection. It looks like there have been papers covering most of the ideas I had for prompt injection detection published in the last couple months – which is incredibly validating that I’m on the right track.
 - **Next Step**: I’ve identified 2 techniques I’m most interested in from [this paper](https://arxiv.org/pdf/2310.12815.pdf). Try implementing them on this dataset and see if I get ideas for improving upon them while implementing.
   - How does the paper back up its claim that the techniques are effective? What dataset do they test on?
+- Thought: these datasets are incredibly useful for the manual prompt engineering case. They do not attempt to tackle the automatic adversarial prompt generation case describes by reference paper 1. That could be a useful step to explore next.
