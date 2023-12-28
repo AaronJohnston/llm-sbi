@@ -22,3 +22,12 @@ This is a list of external works relevant to this project.
 - Walks through prevention- and detection-based defenses. I am most interested in:
   - **Perplexity-Based Detection** and **Proactive Detection** are most similar to the ideas I had. **Next step: investigate how these approaches work.**
   - **LLM-Based Detection** is essentially the same as my fallback approach of simply asking an LLM. I still consider it a fallback because the cost of an extra query is extremely high in practice.
+
+4. HuggingFace Prompt Injection Datasets
+
+- [deepset](https://huggingface.co/datasets/deepset/prompt-injections)
+
+  - A bit small, and has mixed English- and German-language. 4 models trained on it. No details about where the dataset came from that I can find.
+
+- [Harelix](https://huggingface.co/datasets/Harelix/Prompt-Injection-Mixed-Techniques-2024)
+  - over 1K rows, no models trained on it currently.
