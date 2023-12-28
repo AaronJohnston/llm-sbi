@@ -35,5 +35,8 @@ This is a list of external works relevant to this project.
 5. Perplexity-Based Detection Papers
 
 - [Detecting Language Model Attacks with Perplexity](https://arxiv.org/abs/2308.14132) Alon et. al. 2023
+  - Application of Perplexity defense against adversarial strings. Cited by the adversarial-string paper [3], cites [1]. Exactly what I'm looking for.
 - [Demystifying Prompts in Language Models via Perplexity Estimation](https://arxiv.org/abs/2212.04037) (includes Noah Smith and Luke Zettlemoyer from UW NLP!) Alon et. al. 2023
+  - Not as focused on adversarial prompts or defense. More focused on optimizing prompt performance. But seems to talk in depth about perplexity and intuition between it and prompt performance.
 - [Baseline Defenses for Adversarial Attacks Against Aligned Language Models](https://arxiv.org/abs/2309.00614) Jain et. al. 2023
+  - Also application of Perplexity defense against adversarial strings. Has parallels to computer vision. Also cited by [3] and cites [1].
