@@ -25,4 +25,6 @@
   - How to measure intention? Perplexity is similar but does not seem to be exactly the same.
 - [Baseline Defenses for Adversarial Attacks Against Aligned Language Models](https://arxiv.org/pdf/2309.00614.pdf) seems well-written and has a thorough evaluation of perplexity defenses. However, they conclude Perplexity defense on their dataset incurs a relatively high Type-I error (marks 1 in 10 real user prompts as adversarial).
   - Can I replicate the findings of this paper? What dataset did they do their evaluation on?
-  - Did they consider manual adversarial prompts as well as automatically generated? Wouldn't perplexity be much lower on manual prompts?
+  - Did they consider manual adversarial prompts as well as automatically generated? Wouldn't perplexity be much lower on manual prompts? Although they do mention that they tried building a GCG optimimizer for adversarial prompts (as presented in the Zou et. al. paper) that also optimizes for low perplexity, and find it is unable to optimize for both easily.
+    - I wonder if that is always true. Would it be possible to "hide" adversarial prompts inside real prompts so a sliding-window approach wouldn't work?
+  - **Next Step**: I want to try and replicate the dataset from this paper and implement the perplexity filter they describe.
