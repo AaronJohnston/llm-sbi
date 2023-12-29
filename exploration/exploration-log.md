@@ -34,3 +34,15 @@
 - I'm finding that models which can run in a reasonable amount of time on my Intel MacBook Pro are not producing a perplexity reliable enough to do what I want.
 - I may need to rethink this tool with an inference API in mind, or restrict its use to more powerful hardware. Regardless, it's worth running the experiment with a more powerful model to see if something like this is even possible.
 - I can run 7B models in reasonable time if quantized, but I'm having difficulty getting quantized models in a framework that still allows me to extract model loss (Cross-Entropy; so I can calculate perplexity). This might be the next path to explore.
+
+12/29/2023 12:00pm
+
+- Currently my task is getting LLM inference working locally. My requirements are:
+  - Able to expose the logits from inference so I can calculate perplexity
+  - Does not require running beam search or doing any sampling, which is unnecessary for my use case and would slow things down
+  - Able to run a quantized model on the CPU, which is the best I can realistically expect on my current MacBook. GPU tests indicate it is not fast enough to speed up inference, and is unsupported by the vast majority of tooling since it doesn't have CUDA (as an AMD GPU) or ROCM (apparently PyTorch does not support ROCM on MacOS).
+- Because of the third requirement, my best option will be a GGUF format model with the quantization of a high-parameter-count model.
+- I've evaluated a bunch of libraries for this. The current options are:
+  - HuggingFace Transformers - Exposes logits and can calculate loss easily, but does not do well loading quantized CPU models. It seems quantization is largely optimized for GPU use cases only. For example, HF Transformers supports AutoGPTQ natively, but this is for GPU only. HF Transformers can also quantize a model upon download, but (a) this requires downloading the unquantized model which is inefficient (though not a blocker), and (b) it breaks for me because it's implemented assuming CUDA is available (again, GPU only. This is a blocker).
+  - llama.cpp - Much more friendly to the GGUF format, and exposes logits. Has an implementation of Perplexity built-in. I could run it in a subprocess and sample Perplexity.
+  - llama-cpp-python - Python bindings for llama.cpp. There is an eval_logits function that will expose the logits themselves, and I can write my own Perplexity function using those logits with PyTorch's CrossEntropyLoss. There is an example in [this wrapper class from text-generation-webui](https://github.com/oobabooga/text-generation-webui/blob/main/modules/llamacpp_hf.py) I can base off of.
