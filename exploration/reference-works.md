@@ -7,6 +7,7 @@ This is a list of external works relevant to this project.
   - This seems very difficult to defend against -- would an LLM even be able to detect that the intent was changed?
 - One of the key insights of this paper is optimizing for the LLM's response to begin with an affirmative: e.g. "Sure, here is"
   - This is often enough to cause the LLM to start producing malicious content it has been fine-tuned to avoid.
+- Interestingly, the GCG algorithm (Greedy C)
 
 2. [Globally-Robust Neural Networks](https://arxiv.org/pdf/2102.08452.pdf) Leino et. al. 2022
 
@@ -36,6 +37,7 @@ This is a list of external works relevant to this project.
 
 - [Detecting Language Model Attacks with Perplexity](https://arxiv.org/abs/2308.14132) Alon et. al. 2023
   - Application of Perplexity defense against adversarial strings. Cited by the adversarial-string paper [3], cites [1]. Exactly what I'm looking for.
+  - What is l_p adversarial robustness, where inputs are limited to a small p-norm modification? From Hendrycks et. al (2022).
 - [Demystifying Prompts in Language Models via Perplexity Estimation](https://arxiv.org/abs/2212.04037) (includes Noah Smith and Luke Zettlemoyer from UW NLP!) Alon et. al. 2023
   - Not as focused on adversarial prompts or defense. More focused on optimizing prompt performance. But seems to talk in depth about perplexity and intuition between it and prompt performance.
 - [Baseline Defenses for Adversarial Attacks Against Aligned Language Models](https://arxiv.org/abs/2309.00614) Jain et. al. 2023

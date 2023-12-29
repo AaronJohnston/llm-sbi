@@ -18,3 +18,8 @@
 - [Detecting Language Model Attacks with Perplexity](https://arxiv.org/pdf/2308.14132.pdf) is very interesting. What approach do they use for filtering?
 - Can a leave-one-out approach to evaluate perplexity spikes be useful?
 - Brush up on perplexity and how they model it in the above paper.
+
+12/28/2023 5:00pm
+
+- It's unclear to me whether Perplexity is an ideal metric for detecting adversarial prompts. There may be some cases where user data in a prompt is not intended to be a common sequence in that language; say a user has input injected into a prompt that is a list of numbers and symbols. Is that adversarial? Not on its own. To me the definition of adversarial should be "changes the intention of the original prompt".
+  - How to measure intention? Perplexity is similar but does not seem to be exactly the same.
