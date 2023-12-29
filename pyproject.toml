@@ -13,6 +13,8 @@ sentence-transformers = "^2.2.2"
 seaborn = "^0.13.0"
 scikit-learn = "^1.3.2"
 accelerate = "^0.25.0"
+bitsandbytes = "^0.41.3.post2"
+llama-cpp-python = "^0.2.26"
 
 
 [tool.poetry.group.dev.dependencies]
