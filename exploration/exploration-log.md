@@ -23,3 +23,6 @@
 
 - It's unclear to me whether Perplexity is an ideal metric for detecting adversarial prompts. There may be some cases where user data in a prompt is not intended to be a common sequence in that language; say a user has input injected into a prompt that is a list of numbers and symbols. Is that adversarial? Not on its own. To me the definition of adversarial should be "changes the intention of the original prompt".
   - How to measure intention? Perplexity is similar but does not seem to be exactly the same.
+- [Baseline Defenses for Adversarial Attacks Against Aligned Language Models](https://arxiv.org/pdf/2309.00614.pdf) seems well-written and has a thorough evaluation of perplexity defenses. However, they conclude Perplexity defense on their dataset incurs a relatively high Type-I error (marks 1 in 10 real user prompts as adversarial).
+  - Can I replicate the findings of this paper? What dataset did they do their evaluation on?
+  - Did they consider manual adversarial prompts as well as automatically generated? Wouldn't perplexity be much lower on manual prompts?
