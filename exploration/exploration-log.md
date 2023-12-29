@@ -28,3 +28,9 @@
   - Did they consider manual adversarial prompts as well as automatically generated? Wouldn't perplexity be much lower on manual prompts? Although they do mention that they tried building a GCG optimimizer for adversarial prompts (as presented in the Zou et. al. paper) that also optimizes for low perplexity, and find it is unable to optimize for both easily.
     - I wonder if that is always true. Would it be possible to "hide" adversarial prompts inside real prompts so a sliding-window approach wouldn't work?
   - **Next Step**: I want to try and replicate the dataset from this paper and implement the perplexity filter they describe.
+
+12/28/2023 11:00pm
+
+- I'm finding that models which can run in a reasonable amount of time on my Intel MacBook Pro are not producing a perplexity reliable enough to do what I want.
+- I may need to rethink this tool with an inference API in mind, or restrict its use to more powerful hardware. Regardless, it's worth running the experiment with a more powerful model to see if something like this is even possible.
+- I can run 7B models in reasonable time if quantized, but I'm having difficulty getting quantized models in a framework that still allows me to extract model loss (Cross-Entropy; so I can calculate perplexity). This might be the next path to explore.
