@@ -16,6 +16,7 @@ accelerate = "^0.25.0"
 bitsandbytes = "^0.41.3.post2"
 llama-cpp-python = "^0.2.26"
 optimum = "^1.16.1"
+tiktoken = "^0.5.2"
 
 
 [tool.poetry.group.dev.dependencies]
