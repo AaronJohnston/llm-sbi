@@ -46,3 +46,13 @@
   - HuggingFace Transformers - Exposes logits and can calculate loss easily, but does not do well loading quantized CPU models. It seems quantization is largely optimized for GPU use cases only. For example, HF Transformers supports AutoGPTQ natively, but this is for GPU only. HF Transformers can also quantize a model upon download, but (a) this requires downloading the unquantized model which is inefficient (though not a blocker), and (b) it breaks for me because it's implemented assuming CUDA is available (again, GPU only. This is a blocker).
   - llama.cpp - Much more friendly to the GGUF format, and exposes logits. Has an implementation of Perplexity built-in. I could run it in a subprocess and sample Perplexity.
   - llama-cpp-python - Python bindings for llama.cpp. There is an eval_logits function that will expose the logits themselves, and I can write my own Perplexity function using those logits with PyTorch's CrossEntropyLoss. There is an example in [this wrapper class from text-generation-webui](https://github.com/oobabooga/text-generation-webui/blob/main/modules/llamacpp_hf.py) I can base off of.
+
+12/29/2023 11:30pm
+
+- I was able to get Mistral 7B (Quantized) running locally, compute perplexity scores from it, and run a small initial experiment.
+  - The initial experiment was too small to be conclusive, although perplexity calculation runs slower than I was hoping, which will make future experimentation hard.
+- I went back to the first Perplexity defense paper and it's as I remembered: adversarial prompts can be detected with perplexity, manual jailbreak prompts cannot. That's why they also had to use length. I suspect the classifier approach they use would not be robust.
+- I played with many examples of Perplexity and after going back through its calculation I am still convinced it can serve as a good measure of "fluency" in text, provided the model is trained well enough.
+- **Next Step**: Re-run this experiment on the full dataset, using the full perplexity calculation (which is normalized via geometric mean). See if there are any trends in perplexity between manual jailbreak prompts and manual benign prompts. Perhaps I can use the perplexity scores on the range of "test" output completions as features, and use a t-SNE algorithm to see if they can be clustered in any way.
+  - If that doesn't yield results, can try on a SageMaker GPU with a larger LLM to see if it yields any improvements.
+  - And if that doesn't yield results, may be time to move on from perplexity and focus on attention.
