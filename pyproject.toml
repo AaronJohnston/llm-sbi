@@ -20,6 +20,9 @@ tiktoken = "^0.5.2"
 ctransformers = "^0.2.27"
 datasets = "^2.16.0"
 altair = "^5.2.0"
+bertviz = "^1.4.0"
+jupyterlab = "^4.0.10"
+ipywidgets = "^8.1.1"
 
 
 [tool.poetry.group.dev.dependencies]
