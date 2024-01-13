@@ -56,3 +56,7 @@
 - **Next Step**: Re-run this experiment on the full dataset, using the full perplexity calculation (which is normalized via geometric mean). See if there are any trends in perplexity between manual jailbreak prompts and manual benign prompts. Perhaps I can use the perplexity scores on the range of "test" output completions as features, and use a t-SNE algorithm to see if they can be clustered in any way.
   - If that doesn't yield results, can try on a SageMaker GPU with a larger LLM to see if it yields any improvements.
   - And if that doesn't yield results, may be time to move on from perplexity and focus on attention.
+
+1/13/2024 12:00pm
+
+- Looking into attention as a different way to achieve this. Since I don't need to know what the model's intention is, just where it is.
