@@ -79,31 +79,40 @@ def _average_token_attn(token_attn):
         layer_avg_attn_normalized = layer_avg_attn_cleaned / layer_avg_attn_cleaned.sum()
         # inspect_shape('layer_avg_attn_normalized', layer_avg_attn_normalized)
         layer_avg_attns.append(layer_avg_attn_normalized)
-    inspect_shape('layer_avg_attns', layer_attn)
+    # inspect_shape('layer_avg_attns', layer_attn)
     return torch.stack(layer_avg_attns).mean(dim=0)
 
 
 def text_completion_with_attention(prompt: str):
-    prompt_tokens = tokenizer.encode(prompt, return_tensors='pt')
-    inspect_shape('prompt_tokens', prompt_tokens)
+    prompt_token_ids = tokenizer.encode(prompt, return_tensors='pt')
+    # inspect_shape('prompt_tokens', prompt_token_ids)
 
-    outputs = model.generate(prompt_tokens, max_new_tokens=8,
+    outputs = model.generate(prompt_token_ids, max_new_tokens=48,
                              output_attentions=True, return_dict_in_generate=True, pad_token_id=tokenizer.eos_token_id)
 
     # TODO: Is first token being misrepresented? Because it comes from a PROMPTxPROMPT instead of 1xPROMPT? Do I need to take last row?
-    generated_token_avg_attns = [[] for _ in range(prompt_tokens.size()[1])] + list(
+    generated_token_avg_attns = list(
         map(_tensor_to_float_list, map(_average_token_attn, outputs.attentions)))
-    inspect_shape('gtaa', generated_token_avg_attns)
-    generated_token_ids = outputs.sequences[0]
-    inspect_shape('gti', generated_token_ids)
+    # inspect_shape('gtaa', generated_token_avg_attns)
+    prompt_length = prompt_token_ids.size()[1]
 
-    tokens = []
+    prompt_tokens = []
+
+    for prompt_token_id in prompt_token_ids.squeeze():
+        print(prompt_token_id)
+        prompt_tokens.append({
+            'text': _printable_token_text(prompt_token_id),
+        })
+
+    generated_token_ids = outputs.sequences[0][prompt_length:]
+    # inspect_shape('gti', generated_token_ids)
+
+    generated_tokens = []
 
     for token_avg_attn, token_id in zip(generated_token_avg_attns, generated_token_ids):
-        tokens.append({
+        generated_tokens.append({
             'text': _printable_token_text(token_id),
             'attn': str(token_avg_attn),
         })
 
-    print(tokens)
-    return tokens
+    return prompt_tokens, generated_tokens

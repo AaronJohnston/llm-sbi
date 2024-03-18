@@ -1,7 +1,18 @@
-<div class="prompt-result" onmouseleave="clearAttention()">
-    {% for token in tokens %}
-    <span class="token" data-attn="{{ token.attn }}" onmouseenter="drawAttention(this)">
-        {{ token.text }}
-    </span>
-    {% endfor %}
+<div class="result">
+    <div class="prompt-tokens">
+        <span class="font-bold">Prompt </span>
+        {% for token in prompt_tokens %}
+        <span class="token">
+            {{ token.text }}
+        </span>
+        {% endfor %}
+    </div>
+    <div class=" generated-tokens" onmouseleave="clearAttention()">
+        <span class="font-bold">Response </span>
+        {% for token in generated_tokens %}
+        <span class="token" data-attn="{{ token.attn }}" onmouseenter="drawAttention(this)">
+            {{ token.text }}
+        </span>
+        {% endfor %}
+    </div>
     <div>

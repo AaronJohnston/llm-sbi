@@ -10,7 +10,7 @@
 <body>
     <form>
         <textarea id="text" name="prompt"></textarea>
-        <button hx-post="/api/attention" hx-target="#attention-results" hx-swap="beforeend">Submit</button>
+        <input type="submit" hx-post="/api/attention" hx-target="#attention-results" hx-swap="beforeend"></input>
     </form>
     <br />
     <h1>Results</h1>
@@ -19,20 +19,24 @@
 
     <script>
         function drawAttention(element) {
-            const tokenElements = element.parentElement.querySelectorAll('.token');
+            const tokenElements = element.parentElement.parentElement.querySelectorAll('.token');
             const attn = JSON.parse(element.dataset.attn);
 
-            attn.forEach((attn_value, idx) => {
-                hsla_value = 100 - Math.round(100 * 0.8 * attn_value);
-                tokenElements[idx].style.backgroundColor = `hsla(214, 100%, ${hsla_value}%, 1.0)`;
+            tokenElements.forEach((tokenElement, idx) => {
+                if (idx < attn.length) {
+                    const hsla_value = 100 - Math.round(100 * 0.8 * attn[idx]);
+                    const hsla_color = `hsla(214, 100%, ${hsla_value}%, 1.0)`;
+                    tokenElement.style.backgroundColor = hsla_color;
+                } else {
+                    tokenElement.style.removeProperty('background-color');
+                }
             });
         }
 
         function clearAttention() {
             const tokenElements = document.querySelectorAll('.token');
-            console.log(tokenElements);
             tokenElements.forEach((tokenElement) => {
-                tokenElement.style.backgroundColor = `hsla(214, 100%, 100%, 1.0)`;
+                tokenElement.style.removeProperty('background-color');
             })
         }
     </script>
