@@ -9,11 +9,11 @@
 
 <body>
     <form>
-        <textarea name="Text" />
-        <button hx-post="/attention" hx-target="attention-results">Submit</button>
+        <textarea id="text" name="prompt"></textarea>
+        <button hx-post="/api/attention" hx-target="#attention-results" hx-swap="beforeend">Submit</button>
     </form>
     <div id="attention-results">
-
+        Attention results
     </div>
 </body>
 
