@@ -16,6 +16,26 @@
     <h1>Results</h1>
     <div id="attention-results">
     </div>
+
+    <script>
+        function drawAttention(element) {
+            const tokenElements = element.parentElement.querySelectorAll('.token');
+            const attn = JSON.parse(element.dataset.attn);
+
+            attn.forEach((attn_value, idx) => {
+                hsla_value = 100 - Math.round(100 * 0.8 * attn_value);
+                tokenElements[idx].style.backgroundColor = `hsla(214, 100%, ${hsla_value}%, 1.0)`;
+            });
+        }
+
+        function clearAttention() {
+            const tokenElements = document.querySelectorAll('.token');
+            console.log(tokenElements);
+            tokenElements.forEach((tokenElement) => {
+                tokenElement.style.backgroundColor = `hsla(214, 100%, 100%, 1.0)`;
+            })
+        }
+    </script>
 </body>
 
 </html>

@@ -19,7 +19,7 @@ def read_root(request: Request):
 
 @app.post("/api/attention", response_class=HTMLResponse)
 def get_attention(request: Request, prompt: Annotated[str, Form()]):
-    attention.text_completion_with_attention(prompt)
+    tokens = attention.text_completion_with_attention(prompt)
     return templates.TemplateResponse(
-        name="attention.html", context={"request": request, "prompt": prompt}
+        name="attention.html", context={"request": request, "prompt": prompt, "tokens": tokens}
     )

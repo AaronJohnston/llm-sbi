@@ -102,7 +102,8 @@ def text_completion_with_attention(prompt: str):
     for token_avg_attn, token_id in zip(generated_token_avg_attns, generated_token_ids):
         tokens.append({
             'text': _printable_token_text(token_id),
-            'attn': token_avg_attn,
+            'attn': str(token_avg_attn),
         })
 
     print(tokens)
+    return tokens
