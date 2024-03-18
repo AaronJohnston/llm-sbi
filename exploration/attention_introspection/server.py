@@ -4,6 +4,8 @@ from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
+import attention
+
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
@@ -17,6 +19,7 @@ def read_root(request: Request):
 
 @app.post("/api/attention", response_class=HTMLResponse)
 def get_attention(request: Request, prompt: Annotated[str, Form()]):
+    attention.text_completion_with_attention(prompt)
     return templates.TemplateResponse(
         name="attention.html", context={"request": request, "prompt": prompt}
     )
