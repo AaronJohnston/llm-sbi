@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Visualize Attention</title>
+    <script src="https://unpkg.com/htmx.org@1.9.11"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <form>
+        <textarea name="Text" />
+        <button hx-post="/attention" hx-target="attention-results">Submit</button>
+    </form>
+    <div id="attention-results">
+
+    </div>
+</body>
+
+</html>
